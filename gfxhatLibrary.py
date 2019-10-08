@@ -28,29 +28,6 @@ def horizontalLine(y):
             lcd.set_pixel(x,y,1)
             x = x+1
             lcd.show()
-        
-        
-# Show staircase
-def staircase(x,y,w,h):
-    temp_w = x + w
-    temp_h = y + h
-    lcd.clear()
-    lcd.show()
-    backlight.set_all(0,0,255)
-    backlight.show()
-    while(x < 127 and y < 63):
-        for x in range(x,temp_w):
-            if x < 127 and y < 63:
-                lcd.set_pixel(x,y,1)
-                x=x+1
-                lcd.show()
-        for y in range(y,temp_h):
-            if y < 63 and x < 127:
-                lcd.set_pixel(x,y,1)
-                y=y+1
-                lcd.show()
-        temp_w = temp_w+w
-        temp_h = temp_h+h
 
 #Show random pixels
 def randomPixel(t):
@@ -71,3 +48,23 @@ def clearBacklight():
     time.sleep(2)
     backlight.set_all(0,0,0)
     backlight.show()
+
+#Show staircase  
+def staircase(x,y,w,h):
+    lcd.clear()
+    lcd.show()
+    backlight.set_all(0,0,255)
+    backlight.show()
+    while(x <= 127 and y <= 63 and x>=0 and y>=0):
+        for i in range(0,h+1):
+            if y <= 63 and x <= 127 and x>=0 and y>=0:
+                lcd.set_pixel(x,y,1)
+                y=y-1
+                lcd.show()
+                i=i+1
+        for j in range(0,w+1):
+            if y <= 63 and x <= 127 and x>=0 and y>=0:
+                lcd.set_pixel(x,y,1)
+                x=x-1
+                lcd.show()
+                j=j+1
